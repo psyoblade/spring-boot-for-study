@@ -28,5 +28,18 @@ dependencies {
 }
 
 test {
-	useJUnitPlatform()
+	useJUnitPlatform {
+		excludeTags 'debug'
+	}
+}
+task fastTest(type: Test) {
+	useJUnitPlatform {
+		includeTags 'fast'
+	}
+}
+
+task slowTest(type: Test) {
+	useJUnitPlatform {
+		includeTags 'slow'
+	}
 }
