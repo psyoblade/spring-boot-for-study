@@ -1,7 +1,6 @@
 package me.suhyuk.junit.member;
 
 import me.suhyuk.junit.domain.Member;
-import me.suhyuk.junit.domain.Post;
 import me.suhyuk.junit.post.IPostService;
 import me.suhyuk.junit.post.PostRepository;
 import me.suhyuk.junit.post.PostService;
@@ -14,195 +13,42 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.FluentQuery;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.argThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class MockitoTests {
+    private MemberService memberServiceV1;
+    private PostRepository postRepositoryV1;
 
+    // TODO : Mock 객체를 사용하지 않고, 아래 함수의 오류를 해결하세요
     @Test
     @DisplayName("목객체를 사용하지 않고 직접 모키토가 하는 일을 굳이 내가 해보기")
     void testMimicMockito() {
-        MemberService memberService = new MemberService() {
-            @Override
-            public Optional<Member> findById(Long memberId) {
-                return Optional.of(Member.builder().id(1L).build());
-            }
-        };
-        PostRepository postRepository = new PostRepository() {
-            @Override
-            public List<Post> findAll() {
-                return null;
-            }
-
-            @Override
-            public List<Post> findAll(Sort sort) {
-                return null;
-            }
-
-            @Override
-            public List<Post> findAllById(Iterable<Long> longs) {
-                return null;
-            }
-
-            @Override
-            public <S extends Post> List<S> saveAll(Iterable<S> entities) {
-                return null;
-            }
-
-            @Override
-            public void flush() {
-
-            }
-
-            @Override
-            public <S extends Post> S saveAndFlush(S entity) {
-                return null;
-            }
-
-            @Override
-            public <S extends Post> List<S> saveAllAndFlush(Iterable<S> entities) {
-                return null;
-            }
-
-            @Override
-            public void deleteAllInBatch(Iterable<Post> entities) {
-
-            }
-
-            @Override
-            public void deleteAllByIdInBatch(Iterable<Long> longs) {
-
-            }
-
-            @Override
-            public void deleteAllInBatch() {
-
-            }
-
-            @Override
-            public Post getOne(Long aLong) {
-                return null;
-            }
-
-            @Override
-            public Post getById(Long aLong) {
-                return null;
-            }
-
-            @Override
-            public <S extends Post> List<S> findAll(Example<S> example) {
-                return null;
-            }
-
-            @Override
-            public <S extends Post> List<S> findAll(Example<S> example, Sort sort) {
-                return null;
-            }
-
-            @Override
-            public Page<Post> findAll(Pageable pageable) {
-                return null;
-            }
-
-            @Override
-            public <S extends Post> S save(S entity) {
-                return (S) Post.builder().id(1L).build();
-            }
-
-            @Override
-            public Optional<Post> findById(Long aLong) {
-                return Optional.empty();
-            }
-
-            @Override
-            public boolean existsById(Long aLong) {
-                return false;
-            }
-
-            @Override
-            public long count() {
-                return 0;
-            }
-
-            @Override
-            public void deleteById(Long aLong) {
-
-            }
-
-            @Override
-            public void delete(Post entity) {
-
-            }
-
-            @Override
-            public void deleteAllById(Iterable<? extends Long> longs) {
-
-            }
-
-            @Override
-            public void deleteAll(Iterable<? extends Post> entities) {
-
-            }
-
-            @Override
-            public void deleteAll() {
-
-            }
-
-            @Override
-            public <S extends Post> Optional<S> findOne(Example<S> example) {
-                return Optional.empty();
-            }
-
-            @Override
-            public <S extends Post> Page<S> findAll(Example<S> example, Pageable pageable) {
-                return null;
-            }
-
-            @Override
-            public <S extends Post> long count(Example<S> example) {
-                return 0;
-            }
-
-            @Override
-            public <S extends Post> boolean exists(Example<S> example) {
-                return false;
-            }
-
-            @Override
-            public <S extends Post, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
-                return null;
-            }
-        };
+        MemberService memberService = null;
+        PostRepository postRepository = null;
         IPostService postService = new PostService(memberService, postRepository);
         assertNotNull(postService);
     }
 
+    // TODO : Mockito.mock() 함수를 이용하여, 아래 함수의 오류를 해결하세요
     @Test
     @DisplayName("Mockito.mock() 함수를 통해 목객체 활용해보기")
     void testMockito() {
-        MemberService memberService = Mockito.mock(MemberService.class);
-        PostRepository postRepository = Mockito.mock(PostRepository.class);
+        MemberService memberService = null;
+        PostRepository postRepository = null;
         IPostService postService = new PostService(memberService, postRepository);
         assertNotNull(postService);
     }
 
-    @Mock private MemberService memberServiceV1;
-    @Mock private PostRepository postRepositoryV1;
+    // TODO : @Mock 어노테이션을 멤버변수에, 아래 함수의 오류를 해결하세요
     @Test
     @DisplayName("@Mock, @ExtendWith 어노테이션을 이용하여 멤버변수로 주입하는 예제")
     void testMockAnnotation() {
@@ -210,9 +56,10 @@ public class MockitoTests {
         assertNotNull(postService);
     }
 
+    // TODO : @Mock 어노테이션을 입력인자에 적용하여, 아래 함수의 오류를 해결하세요
     @Test
     @DisplayName("@Mock 인자를 통해 테스트하는 예제")
-    void testMockArgument(@Mock MemberService memberService, @Mock PostRepository postRepository) {
+    void testMockArgument(MemberService memberService, PostRepository postRepository) {
         IPostService postService = new PostService(memberService, postRepository);
         assertNotNull(postService);
     }
@@ -226,23 +73,20 @@ public class MockitoTests {
         @Override public String toString() { return "Foo{" + "id=" + id + ", flag=" + flag + '}'; }
     }
 
+    // TODO : Mockito 의 특정 함수를 활용하여 UnnecessaryStubbingException 예외가 발생하지 않도록 작성하세요
     @Test
-    @DisplayName("Mockito.lenient 키워드 활용")
+    @DisplayName("UnnecessaryStubbingException 예외 회피 키워드 활용")
     void testLenient(@Mock Foo foo, @Mock Foo bar) {
-        Mockito.lenient()
-                .when(foo.getId())
-                .thenReturn(0);
-        assertFalse(foo.getFlag());
-        Mockito.when(bar.getId())
-                .thenReturn(0);
+        Mockito.when(foo.getId()).thenReturn(0);
         assertFalse(foo.getFlag());
     }
 
+    // TODO : 단위 테스트가 통과하도록 코드를 수정하세요
     @Test
     @DisplayName("@Mock 객체의 행동을 정의하는 방법")
     void testObjectStubbing(@Mock MemberService memberService) {
         // When ... Then
-        Member member = Member.builder().id(1L).name("박수혁").email("psyoblade@ncsoft.com").build();
+        Member member = Member.builder().build();
         when(memberService.findById(anyLong())).thenReturn(Optional.of(member));
 
         // Execute
@@ -268,7 +112,7 @@ public class MockitoTests {
         // When ... Then
         Bar bar = new Bar();
         // Assert
-        assertThrows(IllegalArgumentException.class, () -> bar.foo(intValue));
+        // TODO : bar.foo(intValue) 함수 호출에서 발생하는 예외를 검증하는 코드를 작성하세요
     }
 
     @Test
@@ -280,7 +124,7 @@ public class MockitoTests {
         mockedList.add("12345");
 
         // Assert
-        verify(mockedList).add(argThat(someString -> someString.length() >= 5));
+        // TODO : mockedList 에 추가된 문자열의 수가 5이상인 것을 확인(verify)하세요
     }
 
     @Test
@@ -294,8 +138,7 @@ public class MockitoTests {
         mockedList.clear();
 
         // Assert -- 순서와 무관하게 호출만을 확인합니다
-        verify(mockedList).clear();
-        verify(mockedList).add("one");
+        // TODO : add 및 clear 함수 호출을 확인하세요
     }
 
     @Test
@@ -313,10 +156,7 @@ public class MockitoTests {
         mockedList.add("three times");
 
         // Assert
-        verify(mockedList, atMostOnce()).add("once");
-        verify(mockedList, times(2)).add("twice");
-        verify(mockedList, atLeast(3)).add("three times");
-        verify(mockedList, atMost(3)).add("three times");
+        // TODO : once, twice, three times 의 호출횟수를 확인하세요
     }
 
     @Test
@@ -330,9 +170,7 @@ public class MockitoTests {
         mockedList.add("second item");
 
         // Assert
-        InOrder inOrder = inOrder(mockedList);
-        inOrder.verify(mockedList).add("first item");
-        inOrder.verify(mockedList).add("second item");
+        // TODO : 호출된 함수의 순서 ("first item", "second item")을 확인하세요
     }
 
     @Test
@@ -349,6 +187,7 @@ public class MockitoTests {
         mockList2.add("mockList2 second");
 
         // Assert
+        // TODO : 호출된 목객체(mockList1, mockList2)를 이용하여 함수의 순서를 확인하세요
         InOrder inOrder = inOrder(mockList2, mockList1);
         inOrder.verify(mockList1).add("mockList1 first");
         inOrder.verify(mockList2).add("mockList2 first");
