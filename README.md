@@ -42,7 +42,7 @@ Packages:
 
 * 테스트 환경을 위한 단위 테스트 템플릿 생성
   - 인텔리제이 환경설정(Preferences) 의 `File and Code Tempaltes` 항목에서 `JUnit5 Test Method`항목을 아래와 같이 수정합니다 
-```java
+```text
 @org.junit.jupiter.api.Test
 void ${NAME}() {
   // Given
@@ -59,6 +59,16 @@ void ${NAME}() {
 > [JUnit5 + Mockito](https://github.com/psyoblade/junit-for-dummies) 페이지에 접속하여 실습을 수행합니다 
 
 * 단위 테스트는 가장 간단한 `MemberService`를 이용해서 시작합니다 (Shift+Command+T)
-  - 단위 테스트 생성은 아까 만들어 두었던 템플릿을 이용합니다  (Commnd+N)
+  - 단위 테스트 생성은 아까 만들어 두었던 템플릿을 이용합니다 `Commnd+N`
+
+
+
+## 3. Spring JPA 테스트
+
+### H2 데이터베이스 설치
+* [H2 Database](http://www.h2database.com/html/download.html) 다운로드 및 설치
+  - Embedded (Server) 선택 후 `jdbc:h2:~/test` "연결" 한 후 접속 종료
+  - 이번에는 `jdbc:h2:tcp://localhost/~/test` 으로 변경 후, "연결" 하면 됩니다
+
 
 
