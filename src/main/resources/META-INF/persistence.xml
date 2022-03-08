@@ -4,6 +4,20 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
     <persistence-unit name="jpademo">
         <class>me.suhyuk.junit.domain.Foo</class>
+        <class>me.suhyuk.junit.domain.Path</class>
+        <class>me.suhyuk.junit.domain.HDFSPath</class>
+        <class>me.suhyuk.junit.domain.BasePath</class>
+        <class>me.suhyuk.junit.domain.Connector</class>
+        <class>me.suhyuk.junit.domain.HiveConnector</class>
+        <class>me.suhyuk.junit.domain.HiveConnector</class>
+        <class>me.suhyuk.junit.domain.KafkaConnector</class>
+        <class>me.suhyuk.junit.domain.LocalPath</class>
+        <class>me.suhyuk.junit.domain.ClickhouseConnector</class>
+        <class>me.suhyuk.junit.domain.Member</class>
+        <class>me.suhyuk.junit.domain.MemberDetail</class>
+        <class>me.suhyuk.junit.domain.Team</class>
+        <class>me.suhyuk.junit.domain.Tag</class>
+        <class>me.suhyuk.junit.domain.TeamTag</class>
         <properties>
             <!-- 필수 속성 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
