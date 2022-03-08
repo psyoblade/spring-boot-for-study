@@ -28,21 +28,21 @@ public class JunitApplication {
 			foo.setName("bar");
 			em.persist(foo);
 
-			// TODO: 1. BasePath { path }
+			// TODO: 1. Path { id, path }
 			//  EXPECTED : PATH 테이블에 레코드 생성
 
-			// TODO: 2. HDFSPath { hdfsPath } extends BasePath 상속 "단일테이블전략"
-			//          LocalPath { localPath } extends BasePath
+			// TODO: 2. HDFSPath { nameNode } extends BasePath { id, basePath } 상속 "단일테이블전략"
+			//          LocalPath { hostName } extends BasePath
 			//          @SuperBuilder 통한 @Builder 상속
 			//  EXPECTED : 부모 테이블에 모든 스키마가 추가되어 2개의 레코드가 생성됨
 
-			// TODO: 3. HiveConnector { serverURL } extends Connector { name, createdTime }
+			// TODO: 3. HiveConnector { id, serverURL } extends Connector { name, createdTime }
 			//          ClickHouseConnector { jdbcConnString } extends Connector
 			//          @MappedSuperClass 사용한 "조인전략" - 자식클래스에게 매핑정보만 제공
 			//  EXPECTED : 별도의 자식 테이블들이 생성되며, 부모 테이블은 생성되지 않음
 
-			// TODO: 4. KafkaConnector { List<String> brokers } extends Connector
-			//          @ElementCollection @CollectionTable 통한 "콜렉션필드전략"
+			// TODO: 4. KafkaConnector { id, List<String> brokers } extends Connector
+			//          @ElementCollection @CollectionTable @JoinColumn 통한 "콜렉션필드전략"
 			//  EXPECTED : 부모 자식 테이블 모두 생성 됩니다
 
 			// TODO: 5. 1:1 단방향 관계 : Member { name } -> MemberDetail { nickName } - 이용자 상세정보 (User is reserved keyword)
