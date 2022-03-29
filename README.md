@@ -73,8 +73,8 @@ chmod +x /usr/local/bin/docker-compose
 
 * 클릭하우스 서버와 클라이언트 기동
 ```bash
-docker-compose up -d
-docker-compose exec clickhouse-client bash
+/usr/local/bin/docker-compose up -d
+/usr/local/bin/docker-compose exec clickhouse-client bash
 ```
 * 예제 테이블 생성 및 예제 데이터 입수
 ```bash
