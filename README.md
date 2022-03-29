@@ -80,3 +80,10 @@ ls -1 tmp/data/2015_1.zip | xargs -I{} -P $(nproc) bash -c "echo {}; unzip -cq {
 > `-Dspring.profiles.active=local` 옵션을 통해서 서비스를 기동
 * [swagger-ui.html](http://localhost:8888/swagger-ui.html)
 
+
+## 9. 참고 사이트
+[Access clickhouse using spring boot & jdbc](https://www.big-meter.com/opensource/en/5ff09d0c9d03902c2642dfa8.html)
+[Clickhouse base exmaple](https://github.com/angelusGJ/clickhouse_base_example)
+[Clickhouse Jdbc](https://github.com/ClickHouse/clickhouse-jdbc)
+[Spring jdbc template example](https://mkyong.com/spring/spring-jdbctemplate-querying-examples/)
+[Spring boot multi profiles](https://1minute-before6pm.tistory.com/12)
