@@ -16,7 +16,7 @@ public class StatisticsAirlinesRepository {
 
     public List<AirlineFlightsNumber> getFlightsByYear(int year) {
         String queryFlightsByYear = "select CarrierDelay, sum(`DOT_ID_Reporting_Airline`) as flights " +
-                "from `ONTIME` where Year = ? group by CarrierDelay order by flights desc";
+                "from `ontime` where Year = ? group by CarrierDelay order by flights desc";
         return jdbcTemplate.query(queryFlightsByYear, new Object[] { year }, (rs, rowNum) -> {
             return new AirlineFlightsNumber(
                     rs.getString("CarrierDelay"),
