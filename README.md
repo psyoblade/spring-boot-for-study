@@ -65,6 +65,12 @@ void ${NAME}() {
 
 ## 3. Clickhouse JDBC 접속 예제 테스트
 
+* 도커 컴포즈 버전이 낮은 경우 오류가 발생할 수 있으므로 버전 확인 후 업그레이드 합니다
+```bash
+curl -L https://github.com/docker/compose/releases/download/1.28.5/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+```
+
 * 클릭하우스 서버와 클라이언트 기동
 ```bash
 docker-compose up -d
