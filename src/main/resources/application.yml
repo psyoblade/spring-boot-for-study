@@ -17,4 +17,4 @@ spring:
       idleTimeout: 600000
       maxLifetime: 1800000
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: me.suhyuk.jdbc.config.ClickhouseDialect
