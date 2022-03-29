@@ -8,10 +8,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @EnableWebMvc
-public class AirlineApplication {
+public class JdbcApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AirlineApplication.class, args);
+		SpringApplication.run(JdbcApplication.class, args);
 	}
 
 }

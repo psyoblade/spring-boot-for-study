@@ -62,3 +62,21 @@ void ${NAME}() {
   - 단위 테스트 생성은 아까 만들어 두었던 템플릿을 이용합니다  (Commnd+N)
 
 
+
+## 3. Clickhouse JDBC 접속 예제 테스트
+
+* 클릭하우스 서버와 클라이언트 기동
+```bash
+docker-compose up -d
+docker-compose exec clickhouse-client bash
+```
+* 예제 테이블 생성 및 예제 데이터 입수
+```bash
+clickhouse-client --host clickhouse-server --queries-file tmp/data/ontime.sql
+ls -1 tmp/data/2015_1.zip | xargs -I{} -P $(nproc) bash -c "echo {}; unzip -cq {} '*.csv' | sed 's/\.00//g' | clickhouse-client --host=clickhouse-server --input_format_with_names_use_header=0 --query='INSERT INTO ontime FORMAT CSVWithNames'"
+```
+
+* 스웨거를 통하여 클릭하우스 정보 조회 
+> `-Dspring.profiles.active=local` 옵션을 통해서 서비스를 기동
+* [swagger-ui.html](http://localhost:8888/swagger-ui.html)
+
