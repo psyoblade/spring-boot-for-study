@@ -1,5 +1,5 @@
 # spring-boot-for-study
-spring boot project for study
+spring boot project for study.
 
 ## 1. 프로젝트 초기화 
 
