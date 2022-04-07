@@ -1,4 +1,4 @@
-package me.suhyuk.jdbc.service;
+package me.suhyuk.jdbc.service.clickhouse;
 
 import java.util.List;
 

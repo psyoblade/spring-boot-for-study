@@ -1,4 +1,4 @@
-package me.suhyuk.jdbc.config;
+package me.suhyuk.jdbc.config.clickhouse;
 
 import org.hibernate.dialect.Dialect;
 

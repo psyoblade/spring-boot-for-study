@@ -1,7 +1,7 @@
-package me.suhyuk.jdbc.controller;
+package me.suhyuk.jdbc.controller.clickhouse;
 
 import me.suhyuk.jdbc.model.AirlineFlightsNumber;
-import me.suhyuk.jdbc.service.StatisticsAirlinesService;
+import me.suhyuk.jdbc.service.clickhouse.StatisticsAirlinesService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

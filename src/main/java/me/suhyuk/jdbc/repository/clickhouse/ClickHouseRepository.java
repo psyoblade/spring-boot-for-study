@@ -1,5 +1,6 @@
-package me.suhyuk.jdbc.repository;
+package me.suhyuk.jdbc.repository.clickhouse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -10,11 +11,18 @@ import java.util.Map;
 @Repository
 public class ClickHouseRepository {
 
-    private final JdbcTemplate jdbcTemplate;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-    public ClickHouseRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public ClickHouseRepository() {
     }
+
+//    private final JdbcTemplate jdbcTemplate;
+//
+//    public ClickHouseRepository(JdbcTemplate jdbcTemplate) {
+//        this.jdbcTemplate = jdbcTemplate;
+//    }
+
 
     public List<String> showDatabases() {
         String query = "show databases";

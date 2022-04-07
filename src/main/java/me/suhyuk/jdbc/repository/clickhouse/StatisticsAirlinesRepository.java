@@ -1,4 +1,4 @@
-package me.suhyuk.jdbc.repository;
+package me.suhyuk.jdbc.repository.clickhouse;
 
 import me.suhyuk.jdbc.model.AirlineFlightsNumber;
 import org.springframework.jdbc.core.JdbcTemplate;

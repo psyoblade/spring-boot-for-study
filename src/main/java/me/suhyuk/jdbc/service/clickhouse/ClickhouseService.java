@@ -1,6 +1,6 @@
-package me.suhyuk.jdbc.service;
+package me.suhyuk.jdbc.service.clickhouse;
 
-import me.suhyuk.jdbc.repository.ClickHouseRepository;
+import me.suhyuk.jdbc.repository.clickhouse.ClickHouseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

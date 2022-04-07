@@ -1,6 +1,6 @@
-package me.suhyuk.jdbc.controller;
+package me.suhyuk.jdbc.controller.clickhouse;
 
-import me.suhyuk.jdbc.service.ClickhouseService;
+import me.suhyuk.jdbc.service.clickhouse.ClickhouseService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
