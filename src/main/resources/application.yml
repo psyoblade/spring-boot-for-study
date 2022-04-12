@@ -7,24 +7,6 @@ server:
   port: 8088
 spring:
   datasource:
-    driverClassName: com.clickhouse.jdbc.ClickHouseDriver
-    username: default
-    password:
-    jdbcUrl: jdbc:clickhouse://127.0.0.1:8123/default
-    connectionTimeout: 67000
-    hikari:
-      connectionTimeout: 67000
-      idleTimeout: 600000
-      maxLifetime: 1800000
-  h2:
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
-    jdbcUrl: jdbc:h2:tcp://localhost/~/test
-    h2:
-      console:
-        enabled: true
-  mysql:
     driverClassName: com.mysql.cj.jdbc.Driver
     username: root
     password: pass
@@ -33,3 +15,26 @@ spring:
       dialect: org.hibernate.dialect.MariaDBDialect
       hbm2ddl:
         auto: create
+    connectionTimeout: 60000
+    hikari:
+      connectionTimeout: 60000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+  clickhouse:
+    driverClassName: com.clickhouse.jdbc.ClickHouseDriver
+    username: default
+    password:
+    jdbcUrl: jdbc:clickhouse://127.0.0.1:8123/default
+    hibernate:
+      dialect: me.suhyuk.jdbc.config.clickhouse.ClickhouseDialect
+  h2:
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+    jdbcUrl: jdbc:h2:tcp://localhost/~/test
+    hibernate:
+      dialect: org.hibernate.dialect.H2Dialect
+      hbm2ddl:
+        auto: create
+    console:
+      enabled: true

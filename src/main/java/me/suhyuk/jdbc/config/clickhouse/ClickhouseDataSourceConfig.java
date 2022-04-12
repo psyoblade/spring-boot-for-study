@@ -1,13 +1,11 @@
 package me.suhyuk.jdbc.config.clickhouse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -25,12 +23,16 @@ import java.util.HashMap;
         entityManagerFactoryRef = "clickhouseEntityManager",
         transactionManagerRef = "clickhouseTransactionManager"
 )
-public class ClickhouseConfig {
-    @Autowired
-    private Environment env;
+@EnableConfigurationProperties(ClickhouseConfiguration.class)
+public class ClickhouseDataSourceConfig {
+
+    private final ClickhouseConfiguration config;
+
+    public ClickhouseDataSourceConfig(ClickhouseConfiguration config) {
+        this.config = config;
+    }
 
     @Bean
-    @Primary
     public LocalContainerEntityManagerFactoryBean clickhouseEntityManager() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(clickhouseDataSource());
@@ -40,19 +42,17 @@ public class ClickhouseConfig {
         em.setJpaVendorAdapter(vendorAdapter);
         // hibernate
         HashMap<String, Object> properties = new HashMap<>();
-        properties.put("hibernate.dialect", "me.suhyuk.jdbc.config.clickhouse.ClickhouseDialect");
+        properties.put("hibernate.dialect", config.getHibernateDialect());
         em.setJpaPropertyMap(properties);
         return em;
     }
 
-    @Primary
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource")
+    @ConfigurationProperties(prefix = "spring.clickhouse")
     public DataSource clickhouseDataSource() {
         return DataSourceBuilder.create().build();
     }
 
-    @Primary
     @Bean
     public PlatformTransactionManager clickhouseTransactionManager() {
         DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
@@ -60,7 +60,6 @@ public class ClickhouseConfig {
         return transactionManager;
     }
 
-    @Primary
     @Bean
     public JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(clickhouseDataSource());
