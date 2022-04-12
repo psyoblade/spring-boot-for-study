@@ -1,6 +1,7 @@
-package me.suhyuk.jdbc.config.h2;
+package me.suhyuk.jdbc.config.mysql;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -19,40 +20,48 @@ import java.util.HashMap;
 @Configuration
 @PropertySource("classpath:/application.yml")
 @EnableJpaRepositories(
-        basePackages = "me.suhyuk.jdbc.repository.h2",
-        entityManagerFactoryRef = "h2EntityManager",
-        transactionManagerRef = "h2TransactionManager"
+        basePackages = "me.suhyuk.jdbc.repository.mysql",
+        entityManagerFactoryRef = "mysqlEntityManager",
+        transactionManagerRef = "mysqlTransactionManager"
 )
-public class H2Config {
+public class MySQLConfig {
     @Autowired
     private Environment env;
 
+    @Value("${spring.mysql.hibernate.dialect}")
+    private String hibernateDialect;
+
+    @Value("${spring.mysql.hibernate.hbm2ddl.auto}")
+    private String hibernateHbm2ddlAuto;
+
     @Bean
-    public LocalContainerEntityManagerFactoryBean h2EntityManager() {
+    public LocalContainerEntityManagerFactoryBean mysqlEntityManager() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(h2DataSource());
+        em.setDataSource(mysqlDataSource());
         // entity
-        em.setPackagesToScan("me.suhyuk.jdbc.model.h2");
+        em.setPackagesToScan("me.suhyuk.jdbc.model.mysql");
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         // hibernate
         HashMap<String, Object> properties = new HashMap<>();
+//        properties.put("hibernate.dialect", hibernateDialect);
+//        properties.put("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
         properties.put("hibernate.hbm2ddl.auto", "create");
-        properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MariaDBDialect");
         em.setJpaPropertyMap(properties);
         return em;
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.h2")
-    public DataSource h2DataSource() {
+    @ConfigurationProperties(prefix = "spring.mysql")
+    public DataSource mysqlDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
-    public PlatformTransactionManager h2TransactionManager() {
+    public PlatformTransactionManager mysqlTransactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(h2EntityManager().getObject());
+        transactionManager.setEntityManagerFactory(mysqlEntityManager().getObject());
         return transactionManager;
     }
 }

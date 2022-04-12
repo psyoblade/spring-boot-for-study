@@ -4,7 +4,7 @@ management:
       exposure:
         include: "*"
 server:
-  port: 8888
+  port: 8088
 spring:
   datasource:
     driverClassName: com.clickhouse.jdbc.ClickHouseDriver
@@ -24,3 +24,12 @@ spring:
     h2:
       console:
         enabled: true
+  mysql:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: pass
+    jdbcUrl: jdbc:mysql://localhost:3306/SELECT-SERVER?serverTimezone=UTC&characterEncoding=UTF-8
+    hibernate:
+      dialect: org.hibernate.dialect.MariaDBDialect
+      hbm2ddl:
+        auto: create
