@@ -28,4 +28,4 @@ services:
 
 networks:
   default:
-    name: default_network
+    name: clickhouse_network
